@@ -65,12 +65,17 @@ void ota_setup() {
       Serial.println("End Failed");
     }
   });
-  ArduinoOTA.begin();
+  // ArduinoOTA.begin();
   Serial.println("Ready");
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 }
 
-void ota_loop() { ArduinoOTA.handle(); }
+void ota_loop() {
+  // TODO: Why does enabling the OTA handler cause the main website responses to
+  // fail?
+
+  // ArduinoOTA.handle();
+}
 
 #endif  // SRC_OTA_H_
