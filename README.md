@@ -29,7 +29,7 @@ channel relay.
 
 ## Background
 
-I have a HEPA filter fan in a out-of-the-way, but awkward to access location.
+I have a HEPA filter in an out-of-the-way, but awkward to access location.
 Problem, solved.
 
 ## License
