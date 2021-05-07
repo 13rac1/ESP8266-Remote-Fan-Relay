@@ -1,6 +1,9 @@
 #ifndef SRC_OTA_H_
 #define SRC_OTA_H_
 
+// Adapted from:
+// https://github.com/esp8266/Arduino/blob/1a381477/libraries/ArduinoOTA/examples/BasicOTA/BasicOTA.ino
+
 #include <ArduinoOTA.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266mDNS.h>
