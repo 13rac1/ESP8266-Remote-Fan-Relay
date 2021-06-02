@@ -25,6 +25,11 @@ void ota_setup() {
     delay(2000);
     ESP.restart();
   }
+  // TODO: Board is not accessible over the network after a few weeks. Adding
+  // this auto-reconnect should resolve. TBD...
+  // https://randomnerdtutorials.com/solved-reconnect-esp8266-nodemcu-to-wifi/
+  WiFi.setAutoReconnect(true);
+  WiFi.persistent(true);
 
   // Port defaults to 8266
   // ArduinoOTA.setPort(8266);
