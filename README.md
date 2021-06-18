@@ -18,6 +18,20 @@ channel relay.
    * [Home Assitant RESTful Command integration](https://www.home-assistant.io/integrations/rest_command/)
    * Android - [HTTP Request Shortcuts](https://play.google.com/store/apps/details?id=ch.rmy.android.http_shortcuts&hl=en_US&gl=US)
 
+### Android HTTP Request Shortcuts Example 
+
+Create in-app shortcuts `GET` requests to the following URLS:
+* `http://device-ip-address/?speed=off`
+* `http://device-ip-address/?speed=low`
+* `http://device-ip-address/?speed=medium`
+* `http://device-ip-address/?speed=high`
+
+Enables creation of a Homescreen folder of fan control shortcuts:
+
+[![Android Fan Control via HTTP Request Shortcuts screenshot](android-fan-control.png)](android-fan-control.png)
+
+Note: Linux, Windows, MacOS, and iOS can use Zeroconf/Bonjour/mDNS `.local` domains, [only Android cannot](https://github.com/Waboodoo/HTTP-Shortcuts/issues/230) 🙄
+
 ## Parts
 
 * A fan (or other device) with a four position switch: off, low, medium, high.
