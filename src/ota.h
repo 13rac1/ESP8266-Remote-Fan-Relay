@@ -16,8 +16,27 @@ const char* password = STAPSK;
 
 // TODO: Store credentials in EEPROM: https://github.com/xoseperez/eeprom_rotate
 
+WiFiEventHandler wifiConnectHandler;
+WiFiEventHandler wifiDisconnectHandler;
+
+void onWifiConnect(const WiFiEventStationModeGotIP& event) {
+  Serial.println("Connected to Wi-Fi sucessfully.");
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());
+}
+
+void onWifiDisconnect(const WiFiEventStationModeDisconnected& event) {
+  Serial.println("Disconnected from Wi-Fi, trying to connect...");
+  WiFi.disconnect();
+  WiFi.begin(ssid, password);
+}
+
 void ota_setup() {
   Serial.println("Booting");
+
+  // Register event handlers
+  wifiConnectHandler    = WiFi.onStationModeGotIP(onWifiConnect);
+  wifiDisconnectHandler = WiFi.onStationModeDisconnected(onWifiDisconnect);
 
   // TODO: Board is not accessible over the network after a few weeks. Adding
   // this auto-reconnect should resolve. TBD...
@@ -78,8 +97,6 @@ void ota_setup() {
   });
   // ArduinoOTA.begin();
   Serial.println("Ready");
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
 }
 
 void ota_loop() {
