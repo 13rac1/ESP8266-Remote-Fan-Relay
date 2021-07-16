@@ -11,6 +11,7 @@
 
 #include "credentials.h"
 
+const char* hostname = "esp8266-fan-relay";
 const char* ssid     = STASSID;
 const char* password = STAPSK;
 
@@ -48,7 +49,7 @@ void ota_setup() {
   // ArduinoOTA.setPort(8266);
 
   // Hostname defaults to esp8266-[ChipID]
-  WiFi.hostname("esp8266-fan-relay");
+  WiFi.hostname(hostname);
 
   // No authentication by default
   // ArduinoOTA.setPassword("admin");
@@ -63,6 +64,10 @@ void ota_setup() {
     Serial.println("Connection Failed! Rebooting...");
     delay(2000);
     ESP.restart();
+  }
+
+  if (!MDNS.begin(hostname)) {
+    Serial.println("Error setting up MDNS responder!");
   }
 
   ArduinoOTA.onStart([]() {
@@ -100,6 +105,7 @@ void ota_setup() {
 }
 
 void ota_loop() {
+  MDNS.update();
   // TODO: Why does enabling the OTA handler cause the main website responses to
   // fail?
 
